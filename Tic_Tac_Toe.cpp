@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
+#include <algorithm>
+
 using namespace std;
 vector <string> user_input {"1","2","3","4","5","6","7","8","9",""};
 string choice;
@@ -8,13 +10,10 @@ int location;
 string insert = " ";
 int player=0;
 string r;
+int count=0;
+string num[]={"1","2","3","4","5","6","7","8","9"};
 
-/* 
-This is a game of tic tac toe. 
-It only supports two player mode
 
-Working to implement a bot for single player
-*/
 	
 int win_condition(){
 	if (user_input[0] == "O" && user_input[4]=="O" && user_input[8]== "O"){
@@ -70,6 +69,8 @@ int bot(){
 }
 
 
+
+
 void grid(){
 	cout<<"   |   "<<user_input[0]<<"  |   "<<user_input[1]<<"  |   "<<user_input[2]<<"  |   \n";
 	cout<<"___|___"<<"___|___"<<"___|___"<<"___|___\n";
@@ -78,15 +79,41 @@ void grid(){
 	cout<<"   |   "<<user_input[6]<<"  |   "<<user_input[7]<<"  |   "<<user_input[8]<<"  |   \n";
 	cout<<"___|___"<<"___|___"<<"___|___"<<"___|___\n";
 	cout<<"   |   "<<"   |   "<<"   |   "<<"   |   \n";
-	
 }
 int main(){
 	
 	cout<<"Tic Tac Toe\n\n\n";
 	cout<<"Player 1(O) -------------- Player 2(X)\n\n"<<"Each player take turn to select a location to insert\n\n\n\n";
 	grid();
-	//bot();
-	for (int i=0; i<user_input.size(); i++){
+    /*
+	bot();
+    if(bot()==10){
+        cout<<"A bot has challenge you to a game of Tic Tac Toe!\n";
+        random_shuffle(begin(num), end(num));
+        for(int i=0; i<10; i++){
+        cout<<"Please enter a location to insert\n";
+        cin>>location;
+        user_input[location-1]=insert;
+        grid();
+       for (int x=0; x<10; x++){
+            num[x]=user_input[x];
+        
+            if (x%2==0){
+                insert = "O";
+        }
+            else{
+                insert = "X";
+        }
+        }
+    grid();
+    }
+    }
+    else{
+        cout<<"";
+    }
+	
+    *///
+    for (int i=0; i<user_input.size(); i++){
 
 	if (i%2==0){
 		player=1;
@@ -106,12 +133,14 @@ int main(){
 	user_input[location-1]=insert;
 	grid();
 	win_condition();
-	if (win_condition()==1){
-		cout<<"Player 2 wins!\n";
+    if (win_condition()==1){
+		//cout<<"Player 2 wins!\n";
+		cout<<"End of game!"<<endl;
 		break;
 	}
 	else if (win_condition()==0){
-		cout<<"Player 1 wins!\n";
+		//cout<<"Player 1 wins!\n";
+		cout<<"End of game!"<<endl;
 		break;
 	}
 	else if(win_condition()==2 && i==8){
@@ -122,14 +151,14 @@ int main(){
 	else{
 		cout<<"";
 	}
-}
+
+
+    }
+
+
+
+
 
 }
-
-
-
-
-
-
 
 
